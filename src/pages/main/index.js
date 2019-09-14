@@ -3,8 +3,9 @@ import { Home, Sidebar } from '../../features';
 
 export const Main = () => (
   <div>
-    <Sidebar />
-    <Home />
+    <Sidebar>
+      <Home />
+    </Sidebar>
   </div>
 );
 
