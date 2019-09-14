@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './home';
+import { Home } from './pages';
 import { Switch, withRouter } from 'react-router-dom';
 
 function Routes() {
