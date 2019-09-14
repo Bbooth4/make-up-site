@@ -16,14 +16,14 @@ const theme = {
   },
   color: {
     primary: {
-      lightest: '#bdbdfc',
+      lightest: '#bdbdfc', // purple
       light: '#9a9af5',
       normal: '#6f6fd9',
       dark: '#5757a1',
       darkest: '#3c3c6e'
     },
     secondary: {
-      lightest: '#a1ffac',
+      lightest: '#a1ffac', // green
       light: '#71d17d',
       normal: '#54ab5f',
       dark: '#388041',

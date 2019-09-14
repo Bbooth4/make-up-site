@@ -43,8 +43,8 @@ export const Sidebar = ({ children }) => {
       <CssBaseline />
       <Bar position="fixed" className={classes.bar}>
         <Toolbar className={classes.bar}>
-          <Typography variant="h6" noWrap>
-            Clipped drawer
+          <Typography variant="h4" noWrap>
+            Garden Party Makeup
           </Typography>
         </Toolbar>
       </Bar>
@@ -57,7 +57,7 @@ export const Sidebar = ({ children }) => {
       >
         <div className={classes.toolbar} />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Quotes', 'Brands'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
@@ -66,7 +66,7 @@ export const Sidebar = ({ children }) => {
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['Photo Library', 'Contact Info', 'Purchase Makeup'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
