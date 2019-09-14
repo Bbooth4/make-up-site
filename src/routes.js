@@ -1,11 +1,11 @@
 import React from 'react';
-import { Home } from './pages';
+import { Main } from './pages';
 import { Switch, withRouter } from 'react-router-dom';
 
 function Routes() {
   return (
     <Switch>
-      <Home exact path='/' />
+      <Main exact path='/' />
     </Switch>
   );
 }
