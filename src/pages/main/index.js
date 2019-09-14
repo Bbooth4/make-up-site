@@ -1,9 +1,9 @@
 import React from 'react';
-import { Home, Header } from '../../features';
+import { Home, Sidebar } from '../../features';
 
 export const Main = () => (
   <div>
-    <Header />
+    <Sidebar />
     <Home />
   </div>
 );

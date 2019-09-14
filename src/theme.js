@@ -12,24 +12,23 @@ const theme = {
     xxlarge: '3rem'
   },
   font: {
-    primary: 'Roboto, sans-serif'
+    primary: 'Garamond, sans-serif'
   },
   color: {
     primary: {
-      lightest: '#f26be9',
-      light: '#de10d0',
-      normal: '#c418b9',
-      dark: '#8f1487',
-      darkest: '#5c0856'
+      lightest: '#bdbdfc',
+      light: '#9a9af5',
+      normal: '#6f6fd9',
+      dark: '#5757a1',
+      darkest: '#3c3c6e'
     },
     secondary: {
-      lightest: '#81eb8e',
-      light: '#3bd14d',
-      normal: '#50c878',
-      dark: '#1a9128',
-      darkest: '#064f0f'
-    },
-
+      lightest: '#a1ffac',
+      light: '#71d17d',
+      normal: '#54ab5f',
+      dark: '#388041',
+      darkest: '#1c4521'
+    }
   }
 };
 
@@ -46,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     line-height: 1.5;
     font-size: ${theme.sizing.medium};
-    font-family: ${theme.font.primary};
+    font-family: ${theme.font.primary} !important;
   }
 `;
 
