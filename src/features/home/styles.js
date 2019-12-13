@@ -11,10 +11,13 @@ export const ImageGrid = styled.div`
   text-align: center;
 `;
 
-export const PhotoList = styled(Grid)`
+export const PhotoList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
+  > div {
+    width: ${({ width }) => width ? '33%' : '50%'};
+  }
 `;
 
 export const PhotoTitle = styled(Grid)`
@@ -36,6 +39,7 @@ export const Image = styled.img`
 `;
 
 export const GridImage = styled.img`
+  width: 99%;
   max-height 20rem;
 `;
 

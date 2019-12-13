@@ -12,7 +12,8 @@ import {
 import {
   Grid,
   Typography,
-  makeStyles
+  makeStyles,
+  useMediaQuery
 } from '@material-ui/core';
 import photos from './container';
 
@@ -43,6 +44,8 @@ const useStyles = makeStyles(theme => ({
 
 export const Home = () => {
   const classes = useStyles();
+  const change = useMediaQuery('(min-width: 1500px)');
+
   return (
     <Body className={classes.root}>
       <Grid container spacing={3}>
@@ -55,7 +58,7 @@ export const Home = () => {
             Photos
           </Typography>
         </PhotoTitle>
-        <PhotoList item xs={12}>
+        <PhotoList item xs={12} width={change}>
           { photos.map(tile => (
             <ImageGrid item xs={6} lg={4}>
               <GridImage src={tile.img} alt={tile.title} />
