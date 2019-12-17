@@ -1,11 +1,15 @@
 import React from 'react';
 import { Main } from './pages';
-import { Switch, withRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
+import { connect } from 'react-redux';
 
 const Routes = () => (
   <Switch>
-    <Main exact path='/' />
+    <Route exact path='/' component={Main} />
   </Switch>
 );
 
-export default withRouter(Routes);
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Routes);
