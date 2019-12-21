@@ -37,13 +37,6 @@ export const photoList = [
   }
 ];
 
-let savedContact = {};
-
 export const getPhotos = (req, res) => {
   res.send(photoList);
-};
-
-export const postContact = (req, res) => {
-  savedContact = req.body;
-  res.send(savedContact);
 };

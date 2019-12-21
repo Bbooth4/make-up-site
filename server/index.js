@@ -1,9 +1,10 @@
+require('dotenv').config();
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { getPhotos, postContact } from './src';
+import { getPhotos, postContact } from './api';
 
-const PORT = 9001;
+const PORT = process.env.PORT;
 
 const corsOptions = { origin: '*', optionsSuccessStatus: 200 };
 
