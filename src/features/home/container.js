@@ -7,7 +7,6 @@ export const getPhotos = () =>
       res.data
         ? dispatch({ type: 'PHOTOS', data: res.data })
         : dispatch({ type: 'PHOTO_ERROR', data: 'PHOTO_ERROR' });
-      dispatch({ type: 'LOADED', data: true });
     })
     .catch(err => dispatch({ type: 'PHOTO_ERROR', data: err }));
   };

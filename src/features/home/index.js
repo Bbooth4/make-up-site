@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Body,
   Image,
@@ -47,18 +47,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const Home = ({
-  loaded,
   photos,
   dispatch
 }) => {
+
+  useEffect(() => dispatch(getPhotos()), [dispatch]);
+
   const classes = useStyles();
   const change = useMediaQuery('(min-width: 1500px)');
-  !loaded && dispatch(getPhotos());
+
   return (
     <Body className={classes.root}>
       <Grid container spacing={3}>
         <ImageGrid item xs={12}>
-          <Image src='background.jpg' alt='make-up' />
+          <Image key='1' src='background.jpg' alt='make-up' />
           <LargeImageText>Text</LargeImageText>
         </ImageGrid>
         <PhotoTitle item xs={12}>
@@ -68,7 +70,7 @@ export const Home = ({
         </PhotoTitle>
         <PhotoList item xs={12}>
           { photos.map((tile, i) => (
-            <ImageGridItem key={`${tile.title}${i}`} item xs={6} lg={4} width={change}>
+            <ImageGridItem key={i} item xs={6} lg={4} width={change.toString()}>
               <GridImage src={tile.img} alt={tile.title} />
               <ImageText>{tile.title}</ImageText>
             </ImageGridItem>
@@ -79,9 +81,8 @@ export const Home = ({
   );
 }
 
-const mapStateToProps = ({ photos }) => ({
-  error: photos.error,
-  loaded: photos.loaded,
+const mapStateToProps = ({ errors, photos }) => ({
+  error: errors.photoError,
   photos: photos.photos
 });
 

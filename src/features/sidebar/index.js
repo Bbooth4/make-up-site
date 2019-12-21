@@ -63,10 +63,10 @@ export const Sidebar = ({ children }) => {
       >
         <div className={classes.toolbar} />
         <List>
-          {['Home', 'Quotes', 'Brands', 'Photo Library', 'Contact Me', 'Purchase Makeup'].map((text, index) => (
-            <Link href={urls[text]}>
+          {['Home', 'Quotes', 'Brands', 'Photo Library', 'Contact Me', 'Purchase Makeup'].map((text, i) => (
+            <Link key={i} href={urls[text]}>
               <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemIcon>{i % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             </Link>
