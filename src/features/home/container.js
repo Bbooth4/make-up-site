@@ -1,40 +1,13 @@
-export const photos = [
-  {
-    img: 'background.jpg',
-    title: 'Image',
-    author: 'author',
-    featured: true
-  },
-  {
-    img: 'background.jpg',
-    title: 'Image 2',
-    author: 'author',
-    featured: true
-  },
-  {
-    img: 'background.jpg',
-    title: 'Image 3',
-    author: 'author',
-    featured: true
-  },
-  {
-    img: 'background.jpg',
-    title: 'Image 4',
-    author: 'author',
-    featured: true
-  },
-  {
-    img: 'background.jpg',
-    title: 'Image 5',
-    author: 'author',
-    featured: true
-  },
-  {
-    img: 'background.jpg',
-    title: 'Image 6',
-    author: 'author',
-    featured: true
-  }
-];
+import axios from 'axios';
 
-export default photos
+export const getPhotos = () =>
+  dispatch => {
+    axios.get(`http://localhost:9001/photos`)
+    .then(res => {
+      res.data
+        ? dispatch({ type: 'PHOTOS', data: res.data })
+        : dispatch({ type: 'PHOTO_ERROR', data: 'PHOTO_ERROR' });
+      dispatch({ type: 'LOADED', data: true });
+    })
+    .catch(err => dispatch({ type: 'PHOTO_ERROR', data: err }));
+  };

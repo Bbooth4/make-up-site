@@ -11,20 +11,31 @@ export const ImageGrid = styled.div`
   text-align: center;
 `;
 
+export const ImageGridItem = styled(ImageGrid)`
+  position: relative;
+  text-align: center;
+  width: ${({ width }) => width ? '33%' : '50%'};
+  img {
+    transition: 0.3s;
+    padding: ${({ theme }) => theme.sizing.medium};
+    &:hover {
+      padding: 0;
+      transition: 0.3s;
+    }
+  }
+`;
+
 export const PhotoList = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  > div {
-    width: ${({ width }) => width ? '33%' : '50%'};
-  }
 `;
 
 export const PhotoTitle = styled(Grid)`
   text-align: center;
   color: ${({ theme }) => theme.color.secondary.light};
+  margin: ${({ theme }) => theme.sizing.xlarge} 0 !important;
 `;
-
 
 export const LargeImage = styled.img`
   height: 40vw;
@@ -39,8 +50,8 @@ export const Image = styled.img`
 `;
 
 export const GridImage = styled.img`
-  width: 99%;
-  max-height 20rem;
+  width: 100%;
+  height: 100%;
 `;
 
 export const LargeImageText = styled.div`
@@ -58,9 +69,4 @@ export const ImageText = styled.div`
   color: #fff;
   position: absolute;
   font-size: ${({ theme }) => theme.sizing.xxlarge};
-`;
-
-export const GridRoot = styled(Grid)`
-  display: flex;
-  justify-content: space-around;
 `;

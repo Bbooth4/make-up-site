@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { home } from './src';
+import { getPhotos, postContact } from './src';
 
 const PORT = 9001;
 
@@ -11,7 +11,9 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-app.get('/test', home);
+app.get('/photos', getPhotos);
+
+app.post('/contact', postContact);
 
 app.listen(PORT, 'localhost', (err) => {
   if (err) console.log(err);

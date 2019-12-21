@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import stores from './stores';
-
+import photos from './photos';
+import contact from './contact';
 
 const rootReducer = history => combineReducers({
-  stores,
+  photos,
+  contact,
   router: connectRouter(history)
 });
 

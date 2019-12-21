@@ -7,6 +7,7 @@ import {
   GridImage,
   PhotoList,
   PhotoTitle,
+  ImageGridItem,
   LargeImageText
 } from './styles';
 import { connect } from 'react-redux';
@@ -17,7 +18,7 @@ import {
   makeStyles,
   useMediaQuery
 } from '@material-ui/core';
-import photos from './container';
+import { getPhotos } from './container';
 import { compose } from 'ramda';
 
 const useStyles = makeStyles(theme => ({
@@ -45,9 +46,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Home = ({ test }) => {
+export const Home = ({
+  loaded,
+  photos,
+  dispatch
+}) => {
   const classes = useStyles();
   const change = useMediaQuery('(min-width: 1500px)');
+  !loaded && dispatch(getPhotos());
   return (
     <Body className={classes.root}>
       <Grid container spacing={3}>
@@ -60,12 +66,12 @@ export const Home = ({ test }) => {
             Photos
           </Typography>
         </PhotoTitle>
-        <PhotoList item xs={12} width={change}>
-          { photos.map(tile => (
-            <ImageGrid key={tile.title} item xs={6} lg={4}>
+        <PhotoList item xs={12}>
+          { photos.map((tile, i) => (
+            <ImageGridItem key={`${tile.title}${i}`} item xs={6} lg={4} width={change}>
               <GridImage src={tile.img} alt={tile.title} />
               <ImageText>{tile.title}</ImageText>
-            </ImageGrid>
+            </ImageGridItem>
           ))}
         </PhotoList>
       </Grid>
@@ -73,7 +79,11 @@ export const Home = ({ test }) => {
   );
 }
 
-const mapStateToProps = (state, ownProps) => ({ test: 'test' });
+const mapStateToProps = ({ photos }) => ({
+  error: photos.error,
+  loaded: photos.loaded,
+  photos: photos.photos
+});
 
 export default compose(
   withRouter,

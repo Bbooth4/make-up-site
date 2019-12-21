@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 
 export const Bar = styled(AppBar)`
   width: 100%;
-  margin: auto !important;
   text-align: center !important;
   font-family: garamond !important;
   font-size: ${({ theme }) => theme.sizing.large} !important;

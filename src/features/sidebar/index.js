@@ -2,9 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { 
   List,
+  Link,
   Drawer,
   Toolbar,
-  Divider,
   ListItem,
   Typography,
   CssBaseline,
@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex'
   },
   bar: {
-    margin: 'auto',
     zIndex: theme.zIndex.drawer + 1
   },
   drawer: {
@@ -36,6 +35,15 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar
 }));
 
+const urls = {
+  Home: '/',
+  Quotes: '/',
+  Brands: '/',
+  'Photo Library': '/',
+  'Purchase Makeup': '/',
+  'Contact Me': 'contact',
+};
+
 export const Sidebar = ({ children }) => {
   const classes = useStyles();
   return (
@@ -49,28 +57,19 @@ export const Sidebar = ({ children }) => {
         </Toolbar>
       </Bar>
       <Drawer
-        className={classes.drawer}
         variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
+        className={classes.drawer}
+        classes={{ paper: classes.drawerPaper }}
       >
         <div className={classes.toolbar} />
         <List>
-          {['Quotes', 'Brands'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['Photo Library', 'Contact Info', 'Purchase Makeup'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {['Home', 'Quotes', 'Brands', 'Photo Library', 'Contact Me', 'Purchase Makeup'].map((text, index) => (
+            <Link href={urls[text]}>
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            </Link>
           ))}
         </List>
       </Drawer>
