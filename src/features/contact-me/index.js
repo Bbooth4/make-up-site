@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Body,
   Title,
-  Button,
   InputField,
   FormWrapper,
   SelectField
@@ -19,10 +18,10 @@ import {
   FormControl
 } from '@material-ui/core';
 import { prop, compose } from 'ramda';
-// import { Button } from '../../components';
+import { Button, Textarea } from '../../components';
 import { updateForm, submitForm } from './container';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     width: '100%',
@@ -47,8 +46,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const ContactMe = ({ contact, dispatch }) => {
-  console.log(contact)
+export const ContactMe = ({ contact, formUpdate, formSubmit }) => {
   const classes = useStyles();
   return (
     <Body className={classes.root}>
@@ -64,24 +62,36 @@ export const ContactMe = ({ contact, dispatch }) => {
           <Grid item xs={12} className={classes.row}>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='firstName'>First Name</InputLabel>
-              <InputField id='firstName' name='firstName' onChange={e => dispatch(updateForm('firstName', e))} />
+              <InputField
+                id='firstName'
+                name='firstName'
+                onChange={e => formUpdate('firstName', e)}
+              />
             </FormControl>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='lastName'>Last Name</InputLabel>
-              <InputField id='lastName' name='lastName' onChange={e => dispatch(updateForm('lastName', e))} />
+              <InputField
+                id='lastName'
+                name='lastName'
+                onChange={e => formUpdate('lastName', e)}
+              />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} className={classes.row}>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='email'>Email</InputLabel>
-              <InputField id='email' name='email' onChange={e => dispatch(updateForm('email', e))} />
+              <InputField
+                id='email'
+                name='email'
+                onChange={e => formUpdate('email', e)}
+              />
             </FormControl>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='topic'>Topic</InputLabel>
               <SelectField
                 value={prop('topic', contact)}
-                onChange={e => dispatch(updateForm('topic', e))}
+                onChange={e => formUpdate('topic', e)}
                 input={ <Input name='beverages' id='drink-list' /> }
               >
                 <MenuItem value=''><em>None</em></MenuItem>
@@ -98,8 +108,16 @@ export const ContactMe = ({ contact, dispatch }) => {
               </SelectField>
             </FormControl>
           </Grid>
+          <Grid item xs={12} className={classes.row}>
+            <FormControl variant='outlined' className={classes.formField}>
+              <Textarea
+                label='Requests'
+                onChange={e => formUpdate('content', e)}
+              />
+            </FormControl>
+          </Grid>
           <Grid item xs={12} className={classes.buttonRow}>
-            <Button onClick={() => dispatch(submitForm(contact))}>Send Email</Button>
+            <Button onClick={() => formSubmit(contact)}>Send Email</Button>
           </Grid>
         </form>
       </FormWrapper>
@@ -107,12 +125,14 @@ export const ContactMe = ({ contact, dispatch }) => {
   );
 }
 
-const mapStateToProps = ({ contact }, ownProps) => {
-  console.log(ownProps)
-  return ({ contact: contact.contact });
-}
+const mapStateToProps = ({ contact }) => ({ contact: contact.contact });
+
+const mapDispatchToProps = dispatch => ({
+  formSubmit: form => dispatch(submitForm(form)),
+  formUpdate: (field, value) => dispatch(updateForm(field, value))
+});
 
 export default compose(
   withRouter,
-  connect(mapStateToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(ContactMe);

@@ -2,6 +2,7 @@ const defaultState = {
   contact: {
     topic: '',
     email: '',
+    content: '',
     lastName: '',
     firstName: ''
   }

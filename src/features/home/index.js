@@ -46,16 +46,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Home = ({
-  photos,
-  dispatch
-}) => {
-
-  useEffect(() => dispatch(getPhotos()), [dispatch]);
-
+export const Home = ({ photos, photoLoad }) => {
   const classes = useStyles();
   const change = useMediaQuery('(min-width: 1500px)');
-
+  useEffect(() => photoLoad(), [photoLoad]);
   return (
     <Body className={classes.root}>
       <Grid container spacing={3}>
@@ -82,11 +76,15 @@ export const Home = ({
 }
 
 const mapStateToProps = ({ errors, photos }) => ({
-  error: errors.photoError,
-  photos: photos.photos
+  photos: photos.photos,
+  error: errors.photoError
+});
+
+const mapDispatchToProps = dispatch => ({
+  photoLoad: () => dispatch(getPhotos())
 });
 
 export default compose(
   withRouter,
-  connect(mapStateToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(Home);
