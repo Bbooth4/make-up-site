@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "migrate": "node-pg-migrate",
     "start": "PORT=8080 react-scripts start",
     "server": "nodemon ./server --exec babel-node --presets es2017 stage-2",
     "build": "react-scripts build",
@@ -17,7 +18,9 @@
     "connected-react-router": "^6.6.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "dropzone": "^5.5.1",
     "express": "^4.17.1",
+    "node-pg-migrate": "^4.2.0",
     "nodemon": "^2.0.2",
     "pg": "^7.15.1",
     "ramda": "^0.26.1",
