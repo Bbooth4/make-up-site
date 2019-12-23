@@ -2,7 +2,7 @@ require('dotenv').config();
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { getPhotos, postContact } from './api';
+import { getPhotos, postPhotos, postContact } from './api';
 
 const PORT = process.env.PORT;
 
@@ -12,8 +12,13 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+
+// PHOTOS
 app.get('/photos', getPhotos);
 
+app.post('/photos', postPhotos);
+
+// CONTACTS
 app.post('/contact', postContact);
 
 app.listen(PORT, 'localhost', (err) => {

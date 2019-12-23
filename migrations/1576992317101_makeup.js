@@ -4,7 +4,7 @@ exports.shorthands = undefined;
 
 exports.up = pgm => {
   pgm.createTable('contacts', {
-    id: 'id',
+    id: 'uuid',
     topic: { type: 'varchar(50)', notNull: true },
     email: { type: 'varchar(100)', notNull: true },
     lastName: { type: 'varchar(100)', notNull: true },
@@ -22,7 +22,7 @@ exports.up = pgm => {
     }
   })
   pgm.createTable('photos', {
-    id: 'id',
+    id: 'uuid',
     img: { type: 'varchar(200)', notNull: true },
     type: { type: 'varchar(100)', notNull: true },
     title: { type: 'varchar(2000)', notNull: true },
@@ -41,4 +41,9 @@ exports.up = pgm => {
   pgm.createIndex('contacts', 'topic')
 }
 
-exports.down = pgm => {};
+exports.down = pgm => {
+  pgm.dropTable('contacts')
+  pgm.dropTable('photos')
+  pgm.dropIndex('photos', 'type'),
+  pgm.dropIndex('contacts', 'topic')
+};

@@ -1,42 +1,50 @@
+import db from '../../db';
+
 export const photoList = [
   {
-    img: 'background.jpg',
+    type: 'type',
     title: 'Image',
-    author: 'author',
-    featured: true
+    img: 'background.jpg'
   },
   {
-    img: 'background.jpg',
+    type: 'type',
     title: 'Image 2',
-    author: 'author',
-    featured: true
+    img: 'background.jpg'
   },
   {
-    img: 'background.jpg',
+    type: 'type',
     title: 'Image 3',
-    author: 'author',
-    featured: true
+    img: 'background.jpg'
   },
   {
-    img: 'background.jpg',
+    type: 'type',
     title: 'Image 4',
-    author: 'author',
-    featured: true
+    img: 'background.jpg'
   },
   {
-    img: 'background.jpg',
+    type: 'type',
     title: 'Image 5',
-    author: 'author',
-    featured: true
+    img: 'background.jpg'
   },
   {
-    img: 'background.jpg',
+    type: 'type',
     title: 'Image 6',
-    author: 'author',
-    featured: true
+    img: 'background.jpg'
   }
 ];
 
 export const getPhotos = (req, res) => {
   res.send(photoList);
+};
+
+export const postPhotos = async (req, res) => {
+  const { img, type, title } = req.body;
+  let image;
+  try {
+    image = await db.query('SELECT create_photo($1, $2, $3)', [img, type, title]);
+  } catch (err) {
+    image = err;
+  }
+  console.log({image});
+  res.send(image);
 };
