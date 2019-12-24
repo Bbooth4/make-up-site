@@ -1,5 +1,8 @@
 require('dotenv').config();
-const pg = require('pg-promise')();
+const Promise = require('bluebird');
+const pg = require('pg-promise')({
+  promiseLib: Promise
+});
 
 const config = {
   user: process.env.DBUSER,

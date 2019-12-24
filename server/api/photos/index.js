@@ -33,18 +33,24 @@ export const photoList = [
   }
 ];
 
-export const getPhotos = (req, res) => {
-  res.send(photoList);
+export const getPhotos = async (req, res) => {
+  const { type } = req.query;
+  let images;
+  try {
+    images = await db.many('SELECT get_photos($1)', [type]);
+  } catch (err) {
+    images = err;
+  }
+  res.send(images);
 };
 
 export const postPhotos = async (req, res) => {
   const { img, type, title } = req.body;
   let image;
   try {
-    image = await db.query('SELECT create_photo($1, $2, $3)', [img, type, title]);
+    image = await db.one('SELECT create_photo($1, $2, $3)', [img, type, title]);
   } catch (err) {
     image = err;
   }
-  console.log({image});
   res.send(image);
 };
