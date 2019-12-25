@@ -1,43 +1,11 @@
 import db from '../../db';
-
-export const photoList = [
-  {
-    type: 'type',
-    title: 'Image',
-    img: 'background.jpg'
-  },
-  {
-    type: 'type',
-    title: 'Image 2',
-    img: 'background.jpg'
-  },
-  {
-    type: 'type',
-    title: 'Image 3',
-    img: 'background.jpg'
-  },
-  {
-    type: 'type',
-    title: 'Image 4',
-    img: 'background.jpg'
-  },
-  {
-    type: 'type',
-    title: 'Image 5',
-    img: 'background.jpg'
-  },
-  {
-    type: 'type',
-    title: 'Image 6',
-    img: 'background.jpg'
-  }
-];
+import { getPhotosQuery } from './queries';
 
 export const getPhotos = async (req, res) => {
   const { type } = req.query;
   let images;
   try {
-    images = await db.many('SELECT get_photos($1)', [type]);
+    images = await db.many(getPhotosQuery(type));
   } catch (err) {
     images = err;
   }

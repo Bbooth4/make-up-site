@@ -46,7 +46,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-export const ContactMe = ({ contact, formUpdate, formSubmit }) => {
+export const ContactMe = ({ contact, formUpdate, formSubmit, missingFields }) => {
   const classes = useStyles();
   return (
     <Body className={classes.root}>
@@ -65,7 +65,7 @@ export const ContactMe = ({ contact, formUpdate, formSubmit }) => {
               <InputField
                 id='firstName'
                 name='firstName'
-                onChange={e => formUpdate('firstName', e)}
+                onChange={e => formUpdate('firstName', e, missingFields)}
               />
             </FormControl>
             <FormControl variant='outlined' className={classes.formField}>
@@ -73,7 +73,7 @@ export const ContactMe = ({ contact, formUpdate, formSubmit }) => {
               <InputField
                 id='lastName'
                 name='lastName'
-                onChange={e => formUpdate('lastName', e)}
+                onChange={e => formUpdate('lastName', e, missingFields)}
               />
             </FormControl>
           </Grid>
@@ -84,14 +84,14 @@ export const ContactMe = ({ contact, formUpdate, formSubmit }) => {
               <InputField
                 id='email'
                 name='email'
-                onChange={e => formUpdate('email', e)}
+                onChange={e => formUpdate('email', e, missingFields)}
               />
             </FormControl>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='topic'>Topic</InputLabel>
               <SelectField
                 value={prop('topic', contact)}
-                onChange={e => formUpdate('topic', e)}
+                onChange={e => formUpdate('topic', e, missingFields)}
                 input={ <Input name='beverages' id='drink-list' /> }
               >
                 <MenuItem value=''><em>None</em></MenuItem>
@@ -112,7 +112,7 @@ export const ContactMe = ({ contact, formUpdate, formSubmit }) => {
             <FormControl variant='outlined' className={classes.formField}>
               <Textarea
                 label='Requests'
-                onChange={e => formUpdate('content', e)}
+                onChange={e => formUpdate('content', e, missingFields)}
               />
             </FormControl>
           </Grid>
@@ -125,11 +125,14 @@ export const ContactMe = ({ contact, formUpdate, formSubmit }) => {
   );
 }
 
-const mapStateToProps = ({ contact }) => ({ contact: contact.contact });
+const mapStateToProps = ({ contact }) => ({
+  contact: contact.contact,
+  missingFields: contact.missingFields
+});
 
 const mapDispatchToProps = dispatch => ({
   formSubmit: form => dispatch(submitForm(form)),
-  formUpdate: (field, value) => dispatch(updateForm(field, value))
+  formUpdate: (field, value, fields) => dispatch(updateForm(field, value, fields))
 });
 
 export default compose(

@@ -1,7 +1,10 @@
 require('dotenv').config();
 const Promise = require('bluebird');
 const pg = require('pg-promise')({
-  promiseLib: Promise
+  promiseLib: Promise,
+  // receive(data, result, e) {
+  //   console.log({data, result, e})
+  // }
 });
 
 const config = {

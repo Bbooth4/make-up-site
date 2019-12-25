@@ -16,7 +16,7 @@ export const StyledButton = styled(UnstyledButton)`
 `;
 
 export const Button = ({ onClick, children }) => (
-  <StyledButton onChange={onClick}>{children}</StyledButton>
+  <StyledButton onClick={onClick}>{children}</StyledButton>
 );
 
 export default Button;

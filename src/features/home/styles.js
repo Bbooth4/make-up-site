@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Grid } from '@material-ui/core';
 
 export const Body = styled.div`
@@ -9,6 +9,11 @@ export const Body = styled.div`
 export const ImageGrid = styled.div`
   position: relative;
   text-align: center;
+  ${({ alt }) => alt === 'true' && css`
+    top: 10vw;
+    width: 100%;
+    height: 20vw;
+  `};
 `;
 
 export const ImageGridItem = styled(ImageGrid)`

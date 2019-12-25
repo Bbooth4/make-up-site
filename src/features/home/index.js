@@ -19,7 +19,7 @@ import {
   useMediaQuery
 } from '@material-ui/core';
 import { getPhotos } from './container';
-import { compose } from 'ramda';
+import { prop, head, compose } from 'ramda';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,15 +46,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Home = ({ photos, photoLoad }) => {
+export const Home = ({ banner, photoList, photoLoad }) => {
   const classes = useStyles();
   const change = useMediaQuery('(min-width: 1500px)');
-  useEffect(() => photoLoad(), [photoLoad]);
+  useEffect(() => {
+    photoLoad('banner');
+    photoLoad('photo_list');
+  }, [photoLoad]);
   return (
     <Body className={classes.root}>
       <Grid container spacing={3}>
-        <ImageGrid item xs={12}>
-          <Image key='1' src='background.jpg' alt='make-up' />
+        <ImageGrid item xs={12} alt={banner ? 'false' : 'true'}>
+          <Image key='1' src={banner} alt='make-up' />
           <LargeImageText>Text</LargeImageText>
         </ImageGrid>
         <PhotoTitle item xs={12}>
@@ -63,7 +66,7 @@ export const Home = ({ photos, photoLoad }) => {
           </Typography>
         </PhotoTitle>
         <PhotoList item xs={12}>
-          { photos.map((tile, i) => (
+          { photoList.map((tile, i) => (
             <ImageGridItem key={i} item xs={6} lg={4} width={change.toString()}>
               <GridImage src={tile.img} alt={tile.title} />
               <ImageText>{tile.title}</ImageText>
@@ -76,12 +79,13 @@ export const Home = ({ photos, photoLoad }) => {
 }
 
 const mapStateToProps = ({ errors, photos }) => ({
-  photos: photos.photos,
-  error: errors.photoError
+  error: errors.photoError,
+  photoList: photos.photos.photo_list,
+  banner: prop('img')(head(photos.photos.banner))
 });
 
 const mapDispatchToProps = dispatch => ({
-  photoLoad: () => dispatch(getPhotos())
+  photoLoad: type => dispatch(getPhotos(type))
 });
 
 export default compose(
