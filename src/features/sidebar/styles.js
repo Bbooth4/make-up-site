@@ -7,8 +7,8 @@ export const Bar = styled(AppBar)`
   text-align: center !important;
   font-family: garamond !important;
   font-size: ${({ theme }) => theme.sizing.large} !important;
-  color: ${({ theme }) => theme.color.primary.darkest} !important;
-  background: ${({ theme }) => theme.color.primary.lightest} !important;
+  color: ${({ theme }) => theme.color.neutral.normal} !important;
+  background: ${({ theme }) => theme.color.primary.darkest} !important;
 `;
 
 export const Heading = styled(Typography)`

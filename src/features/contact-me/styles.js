@@ -8,7 +8,7 @@ export const Body = styled.div`
 
 export const Title = styled(Grid)`
   text-align: center;
-  color: ${({ theme }) => theme.color.secondary.light};
+  color: ${({ theme }) => theme.color.secondary.lightest};
   margin: ${({ theme }) => theme.sizing.xlarge} 0 !important;
 `;
 

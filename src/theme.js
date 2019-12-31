@@ -16,18 +16,25 @@ const theme = {
   },
   color: {
     primary: {
-      lightest: '#bdbdfc', // purple
-      light: '#9a9af5',
-      normal: '#6f6fd9',
-      dark: '#5757a1',
-      darkest: '#3c3c6e'
+      lightest: '#B8A5CE', // purple
+      light: '#7D5BA6',
+      normal: '#9C7BA5',
+      dark: '#80568C',
+      darkest: '#643173'
     },
     secondary: {
-      lightest: '#a1ffac', // green
-      light: '#71d17d',
-      normal: '#54ab5f',
-      dark: '#388041',
-      darkest: '#1c4521'
+      lightest: '#697D6D', // green
+      light: '#3E5843',
+      normal: '#132F18',
+      dark: '#0D2111',
+      darkest: '#14331A'
+    },
+    neutral: {
+      lightest: '#F2F4F6', // grey
+      light: '#E3E7EC',
+      normal: '#DDE2E8',
+      dark: '#F7EDEC',
+      darkest: '#F3E3E2' // tan
     }
   }
 };
