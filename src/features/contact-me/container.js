@@ -24,4 +24,3 @@ export const submitForm = data =>
         .catch(err => dispatch({ type: 'CONTACT_ERROR', data: err }))
       :  dispatch({ type: 'CONTACT_MISSING_FIELDS', data: fields });
   };
-

@@ -17,7 +17,7 @@ import {
   InputLabel,
   FormControl
 } from '@material-ui/core';
-import { prop, compose } from 'ramda';
+import { prop, compose, includes } from 'ramda';
 import { Button, Textarea } from '../../components';
 import { updateForm, submitForm } from './container';
 
@@ -46,7 +46,14 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-export const ContactMe = ({ contact, formUpdate, formSubmit, missingFields }) => {
+export const ContactMe = ({
+  contact,
+  required,
+  formUpdate,
+  formSubmit,
+  missingFields,
+  selectOptions
+  }) => {
   const classes = useStyles();
   return (
     <Body className={classes.root}>
@@ -63,16 +70,20 @@ export const ContactMe = ({ contact, formUpdate, formSubmit, missingFields }) =>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='firstName'>First Name</InputLabel>
               <InputField
+                required
                 id='firstName'
                 name='firstName'
+                error={required('firstName')}
                 onChange={e => formUpdate('firstName', e, missingFields)}
               />
             </FormControl>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='lastName'>Last Name</InputLabel>
               <InputField
+                required
                 id='lastName'
                 name='lastName'
+                error={required('lastName')}
                 onChange={e => formUpdate('lastName', e, missingFields)}
               />
             </FormControl>
@@ -82,21 +93,25 @@ export const ContactMe = ({ contact, formUpdate, formSubmit, missingFields }) =>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='email'>Email</InputLabel>
               <InputField
+                required
                 id='email'
                 name='email'
+                error={required('email')}
                 onChange={e => formUpdate('email', e, missingFields)}
               />
             </FormControl>
             <FormControl variant='outlined' className={classes.formField}>
               <InputLabel htmlFor='topic'>Topic</InputLabel>
               <SelectField
+                required
+                error={required('topic')}
                 value={prop('topic', contact)}
                 onChange={e => formUpdate('topic', e, missingFields)}
                 input={ <Input name='beverages' id='drink-list' /> }
               >
                 <MenuItem value=''><em>None</em></MenuItem>
                 {
-                  ['availability', 'make-up purchases', 'technical error'].map(topic =>
+                  selectOptions.map(topic =>
                     <MenuItem
                       key={topic}
                       value={topic}
@@ -111,7 +126,9 @@ export const ContactMe = ({ contact, formUpdate, formSubmit, missingFields }) =>
           <Grid item xs={12} className={classes.row}>
             <FormControl variant='outlined' className={classes.formField}>
               <Textarea
+                required
                 label='Requests'
+                error={required('content')}
                 onChange={e => formUpdate('content', e, missingFields)}
               />
             </FormControl>
@@ -127,7 +144,9 @@ export const ContactMe = ({ contact, formUpdate, formSubmit, missingFields }) =>
 
 const mapStateToProps = ({ contact }) => ({
   contact: contact.contact,
-  missingFields: contact.missingFields
+  missingFields: contact.missingFields,
+  required: field => includes(field, contact.missingFields),
+  selectOptions: ['availability', 'make-up purchases', 'technical error']
 });
 
 const mapDispatchToProps = dispatch => ({
