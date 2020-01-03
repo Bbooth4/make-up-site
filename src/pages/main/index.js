@@ -1,10 +1,10 @@
 import React from 'react';
-import { Home, Sidebar } from '../../features';
+import { Home, Nav } from '../../features';
 
 export const Main = () => (
-  <Sidebar>
+  <Nav>
     <Home />
-  </Sidebar>
+  </Nav>
 );
 
 export default Main;

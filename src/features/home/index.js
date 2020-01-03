@@ -25,6 +25,9 @@ const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     width: '100%'
+  },
+  grid: {
+    margin: 0
   }
 }));
 
@@ -37,7 +40,7 @@ export const Home = ({ banner, photoList, photoLoad }) => {
   }, [photoLoad]);
   return (
     <Body className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={classes.grid}>
         <ImageGrid item xs={12} alt={banner ? 'false' : 'true'}>
           <Image key='1' src={banner} alt='make-up' />
           <LargeImageText>Text</LargeImageText>

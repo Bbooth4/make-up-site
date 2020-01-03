@@ -1,10 +1,10 @@
 import React from 'react';
-import { ContactMe, Sidebar } from '../../features';
+import { ContactMe, Nav } from '../../features';
 
 export const Contact = () => (
-  <Sidebar>
+  <Nav>
     <ContactMe />
-  </Sidebar>
+  </Nav>
 );
 
 export default Contact;

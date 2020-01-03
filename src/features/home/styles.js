@@ -44,14 +44,14 @@ export const PhotoTitle = styled(Grid)`
 
 export const LargeImage = styled.img`
   height: 40vw;
+  width: 100vw;
   object-fit: fill;
-  width: calc(100vw - 240px);
 `;
 
 export const Image = styled.img`
   height: 40vw;
+  width: 100vw;
   object-fit: fill;
-  width: calc(100vw - 240px);
 `;
 
 export const GridImage = styled.img`
