@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
+import { AppBar, List as UnstyledList } from '@material-ui/core';
 
 export const Bar = styled(AppBar)`
   width: 100%;
@@ -11,8 +10,11 @@ export const Bar = styled(AppBar)`
   background: ${({ theme }) => theme.color.primary.darkest} !important;
 `;
 
-export const Heading = styled(Typography)`
-  font-family: garamond !important;
-  font-size: ${({ theme }) => theme.sizing.large} !important;
-  color: ${({ theme }) => theme.color.secondary.darkest} !important;
+export const List = styled(UnstyledList)`
+  svg {
+    color: ${({ theme }) => theme.color.neutral.normal} !important;
+  }
+  span {
+    color: ${({ theme }) => theme.color.neutral.normal} !important;
+  }
 `;

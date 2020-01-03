@@ -1,25 +1,25 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { 
-  List,
   Link,
   Drawer,
   Toolbar,
   ListItem,
   Typography,
   CssBaseline,
-  ListItemText
+  ListItemText,
+  ListItemIcon
 } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { Bar } from './styles';
+import { Bar, List } from './styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex'
   },
   bar: {
+    boxShadow: 'none',
     zIndex: theme.zIndex.drawer + 1
   },
   drawer: {
@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: 240
+    width: 240,
+    background: '#643173'
   },
   content: {
     flexGrow: 1
@@ -59,7 +60,7 @@ export const Sidebar = ({ children }) => {
       <Drawer
         variant="permanent"
         className={classes.drawer}
-        classes={{ paper: classes.drawerPaper }}
+        classes={{ paper: classes.drawerPaper, background: classes }}
       >
         <div className={classes.toolbar} />
         <List>
