@@ -1,9 +1,10 @@
 import React from 'react';
-import { Home, Nav } from '../../features';
+import { Nav, Home, ContactMe } from '../../features';
 
 export const Main = () => (
   <Nav>
     <Home />
+    <ContactMe />
   </Nav>
 );
 

@@ -25,3 +25,11 @@ export const ListText = styled(ListItemText)`
     font-weight: 700 !important;
   }
 `;
+
+export const Content = styled.main`
+  flex-grow: 1;
+  margin-top: 64px;
+`;
+    // > div {
+    //   margin: 0 10rem 15rem 10rem;
+    // }

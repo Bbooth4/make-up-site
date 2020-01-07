@@ -7,7 +7,7 @@ import {
   Typography,
   CssBaseline
 } from '@material-ui/core';
-import { Bar, List, ListText } from './styles';
+import { Bar, List, Content, ListText } from './styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,10 +27,6 @@ const useStyles = makeStyles(theme => ({
   },
   listItem: {
     padding: '0 24px'
-  },
-  content: {
-    flexGrow: 1,
-    marginTop: '64px'
   }
 }));
 
@@ -39,7 +35,7 @@ const urls = {
   Quotes: '/',
   Brands: '/',  
   'Photo Library': '/',
-  'Purchase Makeup': '/',
+  'Buy Makeup': '/',
   'Contact Me': 'contact',
 };
 
@@ -56,7 +52,7 @@ export const Nav = ({ children }) => {
         </Toolbar>
       </Bar>
       <List>
-        {['Home', 'Quotes', 'Brands', 'Photo Library', 'Contact Me', 'Purchase Makeup'].map((text, i) => (
+        {['Home', 'Quotes', 'Brands', 'Photo Library', 'Contact Me', 'Buy Makeup'].map((text, i) => (
           <Link key={i} href={urls[text]}>
             <ListItem button key={text} className={classes.listItem}>
               <ListText primary={text} />
@@ -64,9 +60,9 @@ export const Nav = ({ children }) => {
           </Link>
         ))}
       </List>
-      <main className={classes.content}>
+      <Content>
         {children}
-      </main>
+      </Content>
     </div>
   );
 }

@@ -39,13 +39,13 @@ export const PhotoList = styled.div`
 export const PhotoTitle = styled(Grid)`
   text-align: center;
   color: ${({ theme }) => theme.color.secondary.light};
-  margin: ${({ theme }) => theme.sizing.xlarge} 0 !important;
+  margin: calc(${({ theme }) => theme.sizing.xxlarge} * 3) 0 !important;
 `;
 
 export const LargeImage = styled.img`
   height: 40vw;
-  width: 100vw;
   object-fit: fill;
+  width: calc(100vw - 20rem);
 `;
 
 export const Image = styled.img`
