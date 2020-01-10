@@ -16,8 +16,8 @@ export const FormWrapper = styled(Grid).attrs({
   container: true
 })`
   height: 40vw;
+  padding: 1rem;
   object-fit: fill;
-  padding: calc(${({ theme }) => theme.sizing.xlarge}*3) calc(${({ theme }) => theme.sizing.xlarge}*5);
 `;
 
 export const InputField = styled(Input)`

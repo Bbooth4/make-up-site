@@ -19,7 +19,10 @@ export const ImageGrid = styled.div`
 export const ImageGridItem = styled(ImageGrid)`
   position: relative;
   text-align: center;
-  width: ${({ width }) => width ? '33%' : '50%'};
+  width: 33%;
+  @media (max-width: 1400px) {
+    width: 50%;
+  }
   img {
     transition: 0.3s;
     padding: ${({ theme }) => theme.sizing.medium};
@@ -43,14 +46,14 @@ export const PhotoTitle = styled(Grid)`
 `;
 
 export const LargeImage = styled.img`
+  width: 100%;
   height: 40vw;
   object-fit: fill;
-  width: calc(100vw - 20rem);
 `;
 
 export const Image = styled.img`
+  width: 100%;
   height: 40vw;
-  width: 100vw;
   object-fit: fill;
 `;
 
@@ -74,4 +77,7 @@ export const ImageText = styled.div`
   color: #fff;
   position: absolute;
   font-size: ${({ theme }) => theme.sizing.xxlarge};
+  @media (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.sizing.large};
+  }
 `;

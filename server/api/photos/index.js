@@ -19,6 +19,5 @@ export const postPhoto = async (req, res) => {
   } catch (err) {
     image = err;
   }
-  console.log(image)
   res.send(image);
 };

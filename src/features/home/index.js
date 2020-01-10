@@ -12,14 +12,9 @@ import {
 } from './styles';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import {
-  Grid,
-  Typography,
-  makeStyles,
-  useMediaQuery
-} from '@material-ui/core';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { getPhotos } from './container';
-import { prop, head, compose } from 'ramda';
+import { prop, head, type, compose } from 'ramda';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -33,7 +28,6 @@ const useStyles = makeStyles(() => ({
 
 export const Home = ({ banner, photoList, photoLoad }) => {
   const classes = useStyles();
-  const change = useMediaQuery('(min-width: 1500px)');
   useEffect(() => {
     photoLoad('banner');
     photoLoad('photo_list');
@@ -52,9 +46,9 @@ export const Home = ({ banner, photoList, photoLoad }) => {
         </PhotoTitle>
         <PhotoList item xs={12}>
           { photoList.map((tile, i) => (
-            <ImageGridItem key={i} item xs={6} lg={4} width={change.toString()}>
-              <GridImage src={tile.img} alt={tile.title} />
-              <ImageText>{tile.title}</ImageText>
+            <ImageGridItem key={i} item>
+              <GridImage src={prop('img', tile)} alt={prop('title', tile)} />
+              <ImageText>{prop('title', tile)}</ImageText>
             </ImageGridItem>
           ))}
         </PhotoList>
@@ -65,8 +59,8 @@ export const Home = ({ banner, photoList, photoLoad }) => {
 
 const mapStateToProps = ({ errors, photos }) => ({
   error: errors.photoError,
-  photoList: photos.photos.photo_list,
-  banner: prop('img')(head(photos.photos.banner))
+  banner: prop('img', head(photos.photos.banner)),
+  photoList: type(photos.photos.photo_list) === 'Array' ? photos.photos.photo_list : []
 });
 
 const mapDispatchToProps = dispatch => ({
