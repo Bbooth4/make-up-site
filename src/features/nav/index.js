@@ -7,7 +7,7 @@ import {
   Typography,
   CssBaseline
 } from '@material-ui/core';
-import { Bar, List, Content, ListText } from './styles';
+import { Bar, List, Footer, Content, ListText } from './styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -62,6 +62,7 @@ export const Nav = ({ children }) => {
       </List>
       <Content>
         {children}
+        <Footer />
       </Content>
     </div>
   );

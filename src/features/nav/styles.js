@@ -31,6 +31,12 @@ export const Content = styled.main`
   max-width: 100%;
   margin-top: 64px;
   > div {
-    padding: 0 10rem 15rem 10rem;
+    padding: 0 10rem 10rem 10rem;
   }
+`;
+
+export const Footer = styled.div`
+  width: 100%;
+  height: 15rem;
+  background: ${({ theme }) => theme.color.primary.darkest} !important;
 `;
