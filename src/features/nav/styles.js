@@ -26,17 +26,24 @@ export const ListText = styled(ListItemText)`
   }
 `;
 
+export const Image = styled.img`
+  top: 6px;
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
+  position: relative;
+`;
+
 export const Content = styled.main`
   flex-grow: 1;
   max-width: 100%;
   margin-top: 64px;
   > div {
-    padding: 0 10rem 10rem 10rem;
+    padding: 0 10rem;
   }
 `;
 
-export const Footer = styled.div`
+export const Footer = styled.span`
   width: 100%;
-  height: 15rem;
-  background: ${({ theme }) => theme.color.primary.darkest} !important;
+  padding-top: 10rem;
 `;
